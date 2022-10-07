@@ -70,7 +70,26 @@ const sellData = [
         */
 ];
 
-
+const deffectProducts=[
+  {
+    "pID":1,
+    "tID":1,
+    "defQty":5
+  },
+  {
+    "pID":1,
+    "tID":2,
+    "defQty":15
+  },
+  
+  {
+    "pID":1,
+    "tID":4,
+    "defQty":10
+  },
+  
+  
+]
 module.exports = {
   productInfo: (req, res) => {
     let productId = req.params.id;
@@ -108,10 +127,14 @@ module.exports = {
       sellQuantity = req.body.quantity,
       productID = req.params.id;
     let pA = [];
-    
+
     stockData.forEach(function (element, index) {
       if (element.pID == productID) {
-        //element["index"] = index
+     deffectProducts.find((value)=>{
+          if(value.tID==element.tID){
+            return element.quantity=element.quantity-value.defQty
+          }
+})
         pA.push(element);
       }
     });
